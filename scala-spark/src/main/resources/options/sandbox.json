@@ -1,0 +1,5 @@
+{
+    "localMode": true,
+    "dataBucket": "s3a://bexg-datasci-bigdata",
+    "dataFolder": "/data/staging/sample/"
+}

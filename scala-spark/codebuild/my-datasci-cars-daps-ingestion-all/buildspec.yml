@@ -1,0 +1,28 @@
+version: 0.2
+
+env:
+  parameter-store:
+    ARTY_LOCAL_USER: "/KUMO/CODEBUILD/ARTY_LOCAL_USER"
+    ARTY_LOCAL_TOKEN: "/KUMO/CODEBUILD/ARTY_LOCAL_TOKEN"
+    EG_GITHUB_TOKEN: "/KUMO/CODEBUILD/EG_GITHUB_TOKEN"
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+    # other run time version https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#runtime-versions-buildspec-file
+    commands:
+      - chmod +x ./codebuild/*.sh
+
+  pre_build:
+    commands:
+      - ./codebuild/pre_build.sh
+
+  build:
+    commands:
+      - ./codebuild/build_all.sh
+
+cache:
+  paths:
+    # - '/root/.m2/**/*'
+    # Other cache folder such as '/root/.m2/**/*' for maven, /root/.gradle/**/*' for gradle

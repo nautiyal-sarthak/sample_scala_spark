@@ -1,0 +1,30 @@
+version: 0.2
+
+env:
+  parameter-store:
+    ARTY_LOCAL_USER: "/KUMO/CODEBUILD/ARTY_LOCAL_USER"
+    ARTY_LOCAL_TOKEN: "/KUMO/CODEBUILD/ARTY_LOCAL_TOKEN"
+    EG_GITHUB_TOKEN: "/KUMO/CODEBUILD/EG_GITHUB_TOKEN"
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+      ruby: 2.6 # ruby 2.6 is required by upload build artifacts
+      docker: 18 # docker is required if build artifacts as docker image and push to docker registry
+    # other run time version https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#runtime-versions-buildspec-file
+    commands:
+      - chmod +x ./codebuild/*.sh
+
+  pre_build:
+    commands:
+      - ./codebuild/pre_build.sh
+
+  build:
+    commands:
+      - ./codebuild/build_master.sh
+
+cache:
+  paths:
+    - '/root/.rvm/**/*'
+    # Other cache folder such as '/root/.m2/**/*' for maven, /root/.gradle/**/*' for gradle

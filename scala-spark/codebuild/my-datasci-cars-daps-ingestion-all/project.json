@@ -1,0 +1,48 @@
+{
+  "name": "my-datasci-cars-daps-ingestion-all",
+  "description": "",
+  "source": {
+    "type": "GITHUB_ENTERPRISE",
+    "location": "https://github.expedia.biz/EGPlatform/my-datasci-cars-daps-ingestion",
+    "buildspec": "codebuild/my-datasci-cars-daps-ingestion-all/buildspec.yml",
+    "reportBuildStatus": true
+  },
+  "artifacts": {
+    "type": "NO_ARTIFACTS"
+  },
+  "environment": {
+    "type": "LINUX_CONTAINER",
+    "image": "aws/codebuild/standard:2.0",
+    "computeType": "BUILD_GENERAL1_SMALL",
+    "environmentVariables": [
+      {
+        "name": "ROLE",
+        "value": "my-datasci-cars-daps-ingestion",
+        "type": "PLAINTEXT"
+      }
+    ],
+    "privilegedMode": true,
+    "imagePullCredentialsType": "CODEBUILD"
+  },
+  "timeoutInMinutes": 60,
+  "queuedTimeoutInMinutes": 5,
+  "tags": [
+    {
+      "key": "Application",
+      "value": "my-datasci-cars-daps-ingestion"
+    },
+    {
+      "key": "Role",
+      "value": "my-datasci-cars-daps-ingestion"
+    }
+  ],
+  "badgeEnabled": true,
+  "logsConfig": {
+    "cloudWatchLogs": {
+      "status": "ENABLED"
+    },
+    "s3Logs": {
+      "status": "DISABLED"
+    }
+  }
+}

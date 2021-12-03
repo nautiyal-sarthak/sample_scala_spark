@@ -1,0 +1,5 @@
+{
+  "localMode": false,
+  "dataBucket": "s3a://bexg-datasci-bigdata",
+  "dataFolder": "/data/prod/sample/"
+}

@@ -1,0 +1,16 @@
+{
+  "projectName": "my-datasci-cars-daps-ingestion-all",
+  "filterGroups": [
+    [
+      {
+        "type": "EVENT",
+        "pattern": "PUSH"
+      },
+      {
+        "type": "HEAD_REF",
+        "pattern": "^refs/heads/master$",
+        "excludeMatchedPattern": true
+      }
+    ]
+  ]
+}
